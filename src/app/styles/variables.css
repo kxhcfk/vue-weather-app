@@ -1,0 +1,17 @@
+:root {
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-s: 12px;
+    --space-n: 16px;
+    --space-m: 20px;
+    --space-l: 24px;
+}
+
+:root {
+    --container-width: 1440px;
+    --max-container-width: calc(var(--container-width) + var(--space-n));
+}
+
+:root {
+    --font-main: "Inter", sans-serif;
+}
