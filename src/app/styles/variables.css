@@ -8,6 +8,36 @@
 }
 
 :root {
+    --size-xxs: 4px;
+    --size-xs: 6px;
+    --size-s: 8px;
+    --size-n: 10px;
+    --size-m: 12px;
+    --size-l: 14px;
+    --size-xl: 16px;
+    --size-xxl: 18px;
+    --size-xxxl: 20px;
+    --size-b: 24px;
+    --size-xb: 28px;
+    --size-xxb: 32px;
+    --size-xxxb: 36px;
+    
+    --lh-xxs: 8px;
+    --lh-xs: 10px;
+    --lh-s: 12px;
+    --lh-n: 14px;
+    --lh-m: 16px;
+    --lh-l: 18px;
+    --lh-xl: 20px;
+    --lh-xxl: 22px;
+    --lh-xxxl: 24px;
+    --lh-b: 32px;
+    --lh-xb: 36px;
+    --lh-xxb: 40px;
+    --lh-xxxb: 44px;
+}
+
+:root {
     --container-width: 1440px;
     --max-container-width: calc(var(--container-width) + var(--space-n));
 }
