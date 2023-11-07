@@ -8,6 +8,21 @@
 }
 
 :root {
+    --radius-xxs: 2px;
+    --radius-xs: 4px;
+    --radius-s: 6px;
+    --radius-n: 8px;
+    --radius-m: 10px;
+    --radius-l: 12px;
+    --radius-xl: 16px;
+    --radius-xxl: 20px;
+}
+
+:root {
+    --gradient-main: linear-gradient(120deg, #FEE3BC 23.22%, #F39876 99.52%);
+}
+
+:root {
     --size-xxs: 4px;
     --size-xs: 6px;
     --size-s: 8px;
