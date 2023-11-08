@@ -9,9 +9,15 @@ export interface Weather {
     dt: number;
     sys: WeatherSys;
     timezone: number;
+    rain: WeatherRain;
     id: number;
     name: string;
     cod: number;
+}
+
+export interface WeatherRain {
+    "1h": number;
+    "3h": number;
 }
 
 export interface WeatherClouds {
