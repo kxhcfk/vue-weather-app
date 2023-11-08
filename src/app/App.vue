@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from "vue";
+import { computed, onMounted, reactive, watch } from "vue";
 import { Header } from "@/widgets/Header";
 import type { Weather } from "@/shared/types/weather";
 import RainFallIcon from "@/shared/assets/icons/rain-fall.svg";
 import WindIcon from "@/shared/assets/icons/wind.svg";
 import HumidityIcon from "@/shared/assets/icons/humidity.svg";
 import type { UserGeolocation } from "@/shared/types/geolocation";
+import { Loader } from "@/shared/ui/Loader";
 
 const state = reactive<{
     currentWeather: Weather | null,
@@ -23,7 +24,7 @@ const getGeolocation = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 const fetchWeather = async () => {
     try {
@@ -41,32 +42,32 @@ const currentDate = computed(() => {
             weekday: "short",
             month: "short",
             day: "numeric",
-        }).format(new Date())
+        }).format(new Date());
         
     } else {
-        return null
+        return null;
     }
-})
+});
 
 watch(() => state.geolocation, () => {
     fetchWeather();
-})
+});
 
 onMounted(() => {
     getGeolocation();
-})
+});
 </script>
 
 <template>
     <div class="app">
         <Header/>
         
-        <main v-if="state.currentWeather">
+        <main v-if="state.currentWeather" class="main">
             <section class="city">
                 <div class="container">
                     <h1 class="name">
-                        {{state.currentWeather?.name}}, <br>
-                        {{state.geolocation?.country_name}}
+                        {{ state.currentWeather?.name }}, <br>
+                        {{ state.geolocation?.country_name }}
                     </h1>
                     <time class="day">{{ currentDate }}</time>
                 </div>
@@ -75,7 +76,11 @@ onMounted(() => {
                 <div class="container">
                     <div class="detail__wrapper">
                         <div class="detail__img-wrapper">
-                            <img class="detail__img" :src="`https://openweathermap.org/img/wn/${state.currentWeather.weather[0].icon}@4x.png`" alt="">
+                            <img
+                                class="detail__img"
+                                :src="`https://openweathermap.org/img/wn/${state.currentWeather.weather[0].icon}@4x.png`"
+                                alt=""
+                            >
                         </div>
                         <div class="detail__info">
                             <h2 class="count">
@@ -95,7 +100,7 @@ onMounted(() => {
                                 <RainFallIcon/>
                             </div>
                             <p class="info__type">RainFall</p>
-                            <span class="info__value">{{ state.currentWeather?.rain['1h'] }}</span>
+                            <span class="info__value">{{ state.currentWeather?.rain["1h"] }}</span>
                         </li>
                         <li v-if="state.currentWeather.wind.speed" class="info__item">
                             <div class="info__icon info__icon--wind">
@@ -115,6 +120,7 @@ onMounted(() => {
                 </div>
             </section>
         </main>
+        <Loader v-else/>
     </div>
 </template>
 
