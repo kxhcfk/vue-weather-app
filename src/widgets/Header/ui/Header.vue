@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SearchIcon from '@/shared/assets/icons/search.svg'
+import MenuIcon from '@/shared/assets/icons/menu.svg'
 import { Button } from "@/shared/ui/Button";
 </script>
 
@@ -9,6 +10,9 @@ import { Button } from "@/shared/ui/Button";
             <div class="header__wrapper">
                 <Button>
                     <SearchIcon/>
+                </Button>
+                <Button>
+                    <MenuIcon/>
                 </Button>
             </div>
         </div>
