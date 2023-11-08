@@ -1,6 +1,8 @@
 :root {
     --color-black: #313341;
     --color-dark-gray: #9A938C;
+    
+    --color-white-opacity: rgba(255, 255, 255, 0.50);
 }
 
 :root {
