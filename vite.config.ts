@@ -9,7 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader({
-      defaultImport: 'component'
+      defaultImport: 'component',
+      svgo: false
     })
   ],
   resolve: {
