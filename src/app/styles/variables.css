@@ -1,21 +1,26 @@
 :root {
-    --space-xxs: 4px;
-    --space-xs: 8px;
-    --space-s: 12px;
-    --space-n: 16px;
-    --space-m: 20px;
-    --space-l: 24px;
+    --color-black: #313341;
+    --color-dark-gray: #9A938C;
 }
 
 :root {
-    --radius-xxs: 2px;
-    --radius-xs: 4px;
-    --radius-s: 6px;
-    --radius-n: 8px;
-    --radius-m: 10px;
-    --radius-l: 12px;
-    --radius-xl: 16px;
-    --radius-xxl: 20px;
+    --space-xxs: 0.4rem;
+    --space-xs: 0.8rem;
+    --space-s: 1.2rem;
+    --space-n: 1.6rem;
+    --space-m: 2rem;
+    --space-l: 2.4rem;
+}
+
+:root {
+    --radius-xxs: 0.2rem;
+    --radius-xs: 0.4rem;
+    --radius-s: 0.6rem;
+    --radius-n: 0.8rem;
+    --radius-m: 1rem;
+    --radius-l: 1.2rem;
+    --radius-xl: 1.6rem;
+    --radius-xxl: 2rem;
 }
 
 :root {
@@ -23,33 +28,33 @@
 }
 
 :root {
-    --size-xxs: 4px;
-    --size-xs: 6px;
-    --size-s: 8px;
-    --size-n: 10px;
-    --size-m: 12px;
-    --size-l: 14px;
-    --size-xl: 16px;
-    --size-xxl: 18px;
-    --size-xxxl: 20px;
-    --size-b: 24px;
-    --size-xb: 28px;
-    --size-xxb: 32px;
-    --size-xxxb: 36px;
+    --size-xxs: 0.4rem;
+    --size-xs: 0.6rem;
+    --size-s: 0.8rem;
+    --size-n: 1rem;
+    --size-m: 1.2rem;
+    --size-l: 1.4rem;
+    --size-xl: 1.6rem;
+    --size-xxl: 1.8rem;
+    --size-xxxl: 2rem;
+    --size-b: 2.4rem;
+    --size-xb: 2.8rem;
+    --size-xxb: 3.2rem;
+    --size-xxxb: 3.6rem;
     
-    --lh-xxs: 8px;
-    --lh-xs: 10px;
-    --lh-s: 12px;
-    --lh-n: 14px;
-    --lh-m: 16px;
-    --lh-l: 18px;
-    --lh-xl: 20px;
-    --lh-xxl: 22px;
-    --lh-xxxl: 24px;
-    --lh-b: 32px;
-    --lh-xb: 36px;
-    --lh-xxb: 40px;
-    --lh-xxxb: 44px;
+    --lh-xxs: 0.8rem;
+    --lh-xs: 1rem;
+    --lh-s: 1.2rem;
+    --lh-n: 1.4rem;
+    --lh-m: 1.6rem;
+    --lh-l: 1.8rem;
+    --lh-xl: 2rem;
+    --lh-xxl: 2.2rem;
+    --lh-xxxl: 2.4rem;
+    --lh-b: 3.2rem;
+    --lh-xb: 3.6rem;
+    --lh-xxb: 4rem;
+    --lh-xxxb: 4.4rem;
 }
 
 :root {
