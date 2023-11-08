@@ -1,35 +1,39 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import { Header } from "@/widgets/Header";
 import type { Weather } from "@/shared/types/weather";
 import RainFallIcon from "@/shared/assets/icons/rain-fall.svg";
 import WindIcon from "@/shared/assets/icons/wind.svg";
 import HumidityIcon from "@/shared/assets/icons/humidity.svg";
+import type { UserGeolocation } from "@/shared/types/geolocation";
 
 const state = reactive<{
-    currentWeather: Weather,
+    currentWeather: Weather | null,
+    geolocation: UserGeolocation | null,
 }>({
     currentWeather: null,
+    geolocation: null,
 });
+
+const getGeolocation = async () => {
+    try {
+        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_IP_GEOLOCATION_API_KEY}`);
+        
+        state.geolocation = await response.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 const fetchWeather = async () => {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=57.443126&lon=42.169525&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}&units=metric`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${state.geolocation?.latitude}&lon=${state.geolocation?.longitude}&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}&units=metric`);
         
-        console.log(response);
         state.currentWeather = await response.json();
     } catch (error) {
         console.log(error);
     }
 };
-
-const weatherImageSrc = computed(() => {
-    if (state.currentWeather) {
-        return `https://openweathermap.org/img/wn/${state.currentWeather.weather[0].icon}@4x.png`
-    } else {
-        return null
-    }
-})
 
 const currentDate = computed(() => {
     if (state.currentWeather) {
@@ -44,7 +48,13 @@ const currentDate = computed(() => {
     }
 })
 
-onMounted(fetchWeather)
+watch(() => state.geolocation, () => {
+    fetchWeather();
+})
+
+onMounted(() => {
+    getGeolocation();
+})
 </script>
 
 <template>
@@ -55,8 +65,8 @@ onMounted(fetchWeather)
             <section class="city">
                 <div class="container">
                     <h1 class="name">
-                        {{state.currentWeather.name}}, <br>
-                        Sweden
+                        {{state.currentWeather?.name}}, <br>
+                        {{state.geolocation?.country_name}}
                     </h1>
                     <time class="day">{{ currentDate }}</time>
                 </div>
@@ -65,14 +75,14 @@ onMounted(fetchWeather)
                 <div class="container">
                     <div class="detail__wrapper">
                         <div class="detail__img-wrapper">
-                            <img class="detail__img" :src="weatherImageSrc" alt="">
+                            <img class="detail__img" :src="`https://openweathermap.org/img/wn/${state.currentWeather.weather[0].icon}@4x.png`" alt="">
                         </div>
                         <div class="detail__info">
                             <h2 class="count">
-                                {{ state.currentWeather.main.temp }}
+                                {{ state.currentWeather?.main.temp }}
                                 <span class="unit">&#8451;</span>
                             </h2>
-                            <p class="description">{{ state.currentWeather.weather[0].main }}</p>
+                            <p class="description">{{ state.currentWeather?.weather[0].main }}</p>
                         </div>
                     </div>
                 </div>
@@ -85,21 +95,21 @@ onMounted(fetchWeather)
                                 <RainFallIcon/>
                             </div>
                             <p class="info__type">RainFall</p>
-                            <span class="info__value">{{ state.currentWeather.rain['1h'] }}</span>
+                            <span class="info__value">{{ state.currentWeather?.rain['1h'] }}</span>
                         </li>
                         <li v-if="state.currentWeather.wind.speed" class="info__item">
                             <div class="info__icon info__icon--wind">
                                 <WindIcon/>
                             </div>
                             <p class="info__type">Wind</p>
-                            <span class="info__value">{{ state.currentWeather.wind.speed }}m/s</span>
+                            <span class="info__value">{{ state.currentWeather?.wind.speed }}m/s</span>
                         </li>
                         <li v-if="state.currentWeather.main.humidity" class="info__item">
                             <div class="info__icon info__icon--humidity">
                                 <HumidityIcon/>
                             </div>
                             <p class="info__type">Humidity</p>
-                            <span class="info__value">{{ state.currentWeather.main.humidity }}%</span>
+                            <span class="info__value">{{ state.currentWeather?.main.humidity }}%</span>
                         </li>
                     </ul>
                 </div>
