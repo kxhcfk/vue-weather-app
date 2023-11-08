@@ -7,14 +7,14 @@ const weather = ref<Weather | null>(null);
 
 const fetchWeather = async () => {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=ea71df48a8312b02626050bab1fd5d84&lang=ru`)
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=39.34&lon=10.99&appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}`);
         
         console.log(response);
         weather.value = await response.json();
     } catch (error) {
         console.log(error);
     }
-}
+};
 </script>
 
 <template>
